@@ -33,7 +33,7 @@ body {
 /* Custom Button Styles */
 
 .btn-dark {
-    border-radius: 0;
+    border-radius: 9;
     color: #fff;
     background-color: rgba(0,0,0,0.4);
 }
@@ -240,7 +240,7 @@ hr.small {
 /* Footer */
 
 footer {
-    padding: 50px 0;
+    padding: 100px 0;
 }
 
 #to-top {
