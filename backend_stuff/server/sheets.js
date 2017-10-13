@@ -40,7 +40,17 @@ module.exports = function sheets(){
   if(!sheets.timerID){
     sheets.timerID = setInterval(() => {
       getJSON( (res) => {
-        sheets.data = JSON.parse(res).values;
+        sheets.raw = JSON.parse(res).values;
+        //parse raw object
+        const header = sheets.raw[0];
+        sheets.data = sheets.raw.slice(1).map( (element) => {
+          let meal = {};
+          for(let i = 0; i < element.length; i++){
+            meal[header[i]] = element[i];
+          }
+          return meal;
+        });
+
         console.log("JSON reloaded");
       });
     }, 10000);
