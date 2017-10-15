@@ -1,0 +1,11 @@
+{
+  "name": "dining-server",
+  "private": true,
+  "scripts": {
+    "start": "node ./main.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "morgan": "^1.9.0"
+  }
+}
