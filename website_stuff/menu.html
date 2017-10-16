@@ -19,8 +19,18 @@
 
     <title>Weekly Calendar</title>
 
-    <!-- Bootstrap core CSS -->
+    <script>
+      var menu = TAFFY();
+      //retrieve the json object from the middle-man server
+      $.getJSON( "http://45.32.165.208/", function( data ) {
+        //inserts a trimmed version of the JSON received from the server
+        menu.insert(JSON.parse(JSON.stringify(data).replace(/"\s+|\s+"/g,'"')));
 
+        menu().each(function(record) {
+          record.dayOfWeek = getDayOfWeek(record.LabelDate);
+        });
+      });
+    </script>
 
   </head>
 
@@ -97,54 +107,51 @@
       </div>
     </footer>
 <script>
-  var menu = TAFFY();
-  //retrieve the json object from the middle-man server
-  $.getJSON( "http://45.32.165.208/", function( data ) {
-    //inserts a trimmed version of the JSON received from the server
-    menu.insert(JSON.parse(JSON.stringify(data).replace(/"\s+|\s+"/g,'"')));
+let selectedDay;
+let d = new Date();
+let today = "day" + d.getDay();
 
-    menu().each(function(record) {
-      record.dayOfWeek = getDayOfWeek(record.LabelDate);
+//activate button for today's day
+$("label[id^='day']").addClass(function(i, dayButton) {
+  if(this.id === today)
+  return("active");
+});
+
+$(document).ready( function() {
+  console.log(getDayOfWeek(d));
+  fillMenu(getDayOfWeek(d));
+});
+
+$('input[type=radio][name=days]').focus(function(elem) {
+  selectedDay = $(this).parent().text().trim();
+  fillMenu(selectedDay);
+});
+
+
+
+function toSentenceCase(str) {
+  return str.substr(0,1).toUpperCase()+str.substr(1).toLowerCase();
+}
+
+function getDayOfWeek(date) {
+  let dayOfWeek = new Date(date).getDay();
+  return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+}
+
+function fillMenu(day) {
+  var meals = menu({dayOfWeek : day}).distinct("Meal");
+
+  $('.meal').empty();
+
+  $.each(meals, function(e, meal) {
+    $('.meal').append(
+      "<h2>" + toSentenceCase(meal) + "</h2><ul class='" + meal + "'></ul>"
+    );
+    $.each(menu({Meal: {isnocase: meal},dayOfWeek: day}).get(), function(i, item) {
+      $('.'+meal).append('<li>' + item.FormalName.toLowerCase() + '</li>')
     });
   });
-
-  //get the current date
-  var d = new Date();
-  var curDay = "day" + d.getDay();
-  //activate button for today's day
-  $("label[id^='day']").addClass(function(i, dayButton) {
-    if(this.id === curDay)
-      return("active");
-      fillMenu(d.getDay());
-  });
-
-  $('input[type=radio][name=days]').change(function(elem) {
-    let day = $(this).parent().text().trim();
-    fillMenu(day);
-  });
-
-  function toSentenceCase(str) {
-    return str.substr(0,1).toUpperCase()+str.substr(1).toLowerCase();
-  }
-
-  function getDayOfWeek(date) {
-    let dayOfWeek = new Date(date).getDay();
-    return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
-  }
-
-  function fillMenu(day) {
-    var meals = menu({dayofWeek:day}).distinct("Meal");
-    console.log(meals);
-
-    $.each(meals, function(e, meal) {
-      $('.meal').append(
-        "<h2>" + toSentenceCase(meal) + "</h2><ul class='" + meal + "'></ul>"
-      );
-      $.each(menu({Meal: {isnocase: meal},dayOfWeek: day}).get(), function(i, item) {
-        $('.'+meal).append('<li>' + item.FormalName.toLowerCase() + '</li>')
-      });
-    });
-  }
+}
 </script>
   </body>
 
