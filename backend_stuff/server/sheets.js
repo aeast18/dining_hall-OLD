@@ -72,7 +72,7 @@ module.exports = function sheets(){
           //   return meal;
           // });
 
-          console.log("JSON reloaded" + sheets.raw);
+          console.log("JSON reloaded");
         }, sheets.rowCount);
       });
     }, 10000);

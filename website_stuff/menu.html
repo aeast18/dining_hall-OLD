@@ -24,11 +24,24 @@
       //retrieve the json object from the middle-man server
       $.getJSON( "http://45.32.165.208/", function( data ) {
         //inserts a trimmed version of the JSON received from the server
-        menu.insert(JSON.parse(JSON.stringify(data).replace(/"\s+|\s+"/g,'"')));
+        const header = data[0];
+
+        var newdata = data.slice(1).map( (element) => {
+          let meal = {};
+          for(let i = 0; i < element.length; i++){
+            meal[header[i]] = element[i];
+          }
+          return meal;
+        });
+
+        menu.insert(JSON.parse(JSON.stringify(newdata).replace(/"\s+|\s+"/g,'"')));
 
         menu().each(function(record) {
           record.dayOfWeek = getDayOfWeek(record.LabelDate);
         });
+        
+        console.log(getDayOfWeek(d));
+        fillMenu(getDayOfWeek(d));
       });
     </script>
 
@@ -115,11 +128,6 @@ let today = "day" + d.getDay();
 $("label[id^='day']").addClass(function(i, dayButton) {
   if(this.id === today)
   return("active");
-});
-
-$(document).ready( function() {
-  console.log(getDayOfWeek(d));
-  fillMenu(getDayOfWeek(d));
 });
 
 $('input[type=radio][name=days]').focus(function(elem) {
