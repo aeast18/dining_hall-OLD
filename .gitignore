@@ -1,1 +1,4 @@
 node_modules/
+
+# Api keys
+backend_stuff/server/config.js

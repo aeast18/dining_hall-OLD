@@ -2,8 +2,10 @@
 
 var express  = require("express");
 var morgan = require("morgan");
+var config = require("./config");
+
 var app      = express();
-var port     = 8080;
+const port     = config.port;
 
 app.use(morgan("dev"));
 

@@ -1,20 +1,9 @@
 var https = require("https");
 
-const spreadsheetsID = "1SEuFXjUtNFTZkp1xSInLBa1ydE4EFE6lOUuHqKnyy5o";
-const apiKey = "AIzaSyCDDfmqAa9O3q--Mp3XCXne3dNqRVgglBg";
+var config = require("./config");
 
 //original from stackoverflow.com/questions/9577611
-function getJSON(callback){
-  var options = {
-    host: "sheets.googleapis.com",
-    port: 443,
-    path: "/v4/spreadsheets/" + spreadsheetsID + "/values/A1:H200?majorDimension=ROWS&key=" + apiKey,
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json"
-    }
-  };
-
+function getJSON(options, callback){
   var req = https.request(options, function(res){
     var output = "";
     console.log(options.host + ":" + res.statusCode);
@@ -36,22 +25,58 @@ function getJSON(callback){
   req.end();
 }
 
+function getSheet(callback){
+  var options = {
+    host: "sheets.googleapis.com",
+    port: 443,
+    path: "/v4/spreadsheets/" + config.spreadsheetsID + "?key=" + config.apiKey,
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }
+  };
+  getJSON(options, callback);
+}
+
+function getValue(callback, range){
+  var options = {
+    host: "sheets.googleapis.com",
+    port: 443,
+    path: "/v4/spreadsheets/" + config.spreadsheetsID + "/values/A1:ET" + range + "?majorDimension=ROWS&key=" + config.apiKey,
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json"
+    }
+  };
+  getJSON(options, callback);
+}
+
 module.exports = function sheets(){
   if(!sheets.timerID){
     sheets.timerID = setInterval(() => {
-      getJSON( (res) => {
-        sheets.raw = JSON.parse(res).values;
-        //parse raw object
-        const header = sheets.raw[0];
-        sheets.data = sheets.raw.slice(1).map( (element) => {
-          let meal = {};
-          for(let i = 0; i < element.length; i++){
-            meal[header[i]] = element[i];
-          }
-          return meal;
-        });
+      getSheet( (res) => {
+        if(res){
+          sheets.rowCount = JSON.parse(res).sheets[0].properties.gridProperties.rowCount;
+          getValue( (res) => {
+            if(res){
+              sheets.raw = JSON.parse(res).values;
+              sheets.data = sheets.raw;
 
-        console.log("JSON reloaded");
+              //parse raw object
+              //const header = sheets.raw[0];
+
+              // sheets.data = sheets.raw.slice(1).map( (element) => {
+              //   let meal = {};
+              //   for(let i = 0; i < element.length; i++){
+              //     meal[header[i]] = element[i];
+              //   }
+              //   return meal;
+              // });
+
+              console.log("JSON reloaded");
+            }
+          }, sheets.rowCount);
+        }
       });
     }, 10000);
   }
