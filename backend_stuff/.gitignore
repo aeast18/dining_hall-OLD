@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+# Api keys
+backend_stuff/server/config.js
