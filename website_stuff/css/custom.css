@@ -21,3 +21,10 @@ body {
 .below-nav {
   margin-top: 5rem;
 }
+
+.about {
+  margin-left: 400px;
+  margin-right: 400px;
+  margin-top: 40px;
+
+}
