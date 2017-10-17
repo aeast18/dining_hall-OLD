@@ -55,25 +55,28 @@ module.exports = function sheets(){
   if(!sheets.timerID){
     sheets.timerID = setInterval(() => {
       getSheet( (res) => {
-        sheets.rowCount = JSON.parse(res).sheets[0].properties.gridProperties.rowCount;
+        if(res){
+          sheets.rowCount = JSON.parse(res).sheets[0].properties.gridProperties.rowCount;
+          getValue( (res) => {
+            if(res){
+              sheets.raw = JSON.parse(res).values;
+              sheets.data = sheets.raw;
 
-        getValue( (res) => {
-          sheets.raw = JSON.parse(res).values;
-          sheets.data = sheets.raw;
+              //parse raw object
+              //const header = sheets.raw[0];
 
-          //parse raw object
-          //const header = sheets.raw[0];
+              // sheets.data = sheets.raw.slice(1).map( (element) => {
+              //   let meal = {};
+              //   for(let i = 0; i < element.length; i++){
+              //     meal[header[i]] = element[i];
+              //   }
+              //   return meal;
+              // });
 
-          // sheets.data = sheets.raw.slice(1).map( (element) => {
-          //   let meal = {};
-          //   for(let i = 0; i < element.length; i++){
-          //     meal[header[i]] = element[i];
-          //   }
-          //   return meal;
-          // });
-
-          console.log("JSON reloaded");
-        }, sheets.rowCount);
+              console.log("JSON reloaded");
+            }
+          }, sheets.rowCount);
+        }
       });
     }, 10000);
   }
