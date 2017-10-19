@@ -2,12 +2,16 @@
 
 var express  = require("express");
 var morgan = require("morgan");
+var multer = require('multer');
 var config = require("./config");
 
 var app      = express();
 const port     = config.port;
 
 app.use(morgan("dev"));
+
+var storage = multer.memoryStorage();
+app.use(multer({ storage }).single('newdata'));
 
 // To allow Cross-Domain Cookie
 app.use(function(req, res, next) {
