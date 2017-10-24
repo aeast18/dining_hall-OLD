@@ -1,1 +1,141 @@
 <!-- Ideally this will be a template for displaying all necessary information about a certain item. -->
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <script src="js/taffy.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> Don't tell me WHAT TO DO ADRIAN YOU GlutTON</title>
+
+    <script>
+      var menu = TAFFY();
+      //retrieve the json object from the middle-man server
+      $.getJSON( "http://45.32.165.208/", function( data ) {
+        //inserts a trimmed version of the JSON received from the server
+        const header = data[0];
+
+        var newdata = data.slice(1).map( (element) => {
+          let meal = {};
+          for(let i = 0; i < element.length; i++){
+            meal[header[i]] = element[i];
+          }
+          return meal;
+        });
+
+        menu.insert(JSON.parse(JSON.stringify(newdata).replace(/"\s+|\s+"/g,'"')));
+
+        menu().each(function(record) {
+          record.dayOfWeek = getDayOfWeek(record.LabelDate);
+        });
+
+        console.log(getDayOfWeek(d));
+        fillMenu(getDayOfWeek(d));
+      });
+    </script>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">NMH Dining Services</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="menu.html">Menu
+                <!-- <span class="sr-only">(current)</span> -->
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Feedback.html">Feedback</a>
+            </li>
+            <!-- This is TEMPORARY !!! -->
+
+          <li class="item-overview-TEST">
+            <a class="item-overview-TEST-link" href="item-overview.html">Item Overview Hahaa</a>
+          </1i>
+
+          <!-- End of temporary Miru Shenanigans -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+   <h1 class="below-nav display-1">Test Item Name</h1>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">NMH Dining Service <i class="fa fa-copyright" aria-hidden="true"></i> 2017</span>
+      </div>
+    </footer>
+<script>
+let selectedDay;
+let d = new Date();
+let today = "day" + d.getDay();
+
+//activate button for today's day
+$("label[id^='day']").addClass(function(i, dayButton) {
+  if(this.id === today)
+  return("active");
+});
+
+$('input[type=radio][name=days]').focus(function(elem) {
+  selectedDay = $(this).parent().text().trim();
+  fillMenu(selectedDay);
+});
+
+
+
+function toSentenceCase(str) {
+  return str.substr(0,1).toUpperCase()+str.substr(1).toLowerCase();
+}
+
+function getDayOfWeek(date) {
+  let dayOfWeek = new Date(date).getDay();
+  return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+}
+
+function fillMenu(day) {
+  var meals = menu({dayOfWeek : day}).distinct("Meal");
+
+  $('.meal').empty();
+
+  $.each(meals, function(e, meal) {
+    $('.meal').append(
+      "<h2>" + toSentenceCase(meal) + "</h2><ul class='" + meal + "'></ul>"
+    );
+    $.each(menu({Meal: {isnocase: meal},dayOfWeek: day}).get(), function(i, item) {
+      $('.'+meal).append('<li>' + item.FormalName.toLowerCase() + '</li>')
+    });
+  });
+}
+</script>
+  </body>
+
+</html>
