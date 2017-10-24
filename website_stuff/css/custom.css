@@ -20,10 +20,16 @@ body {
 
 .below-nav {
   margin-top: 5rem;
+  text-align: center;
+  font-size: 500%;
 }
 
 .about {
   margin-left: 500px;
   margin-right: 500px;
   margin-top: 40px;
+}
+
+.container {
+  text-align: center;
 }
