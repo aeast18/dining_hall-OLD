@@ -27,3 +27,8 @@ body {
   margin-right: 500px;
   margin-top: 40px;
 }
+.form {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
