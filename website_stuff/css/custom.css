@@ -20,6 +20,8 @@ body {
 
 .below-nav {
   margin-top: 5rem;
+  text-align: center;
+  font-size: 500%;
 }
 
 .about {
@@ -27,8 +29,14 @@ body {
   margin-right: 500px;
   margin-top: 40px;
 }
+<<<<<<< HEAD
 .form {
     display: block;
     margin: auto;
     width: 50%;
+=======
+
+.container {
+  text-align: center;
+>>>>>>> 22d79537eeab745d67b67556af5f60412237d2f5
 }
