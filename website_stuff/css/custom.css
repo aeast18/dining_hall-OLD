@@ -15,6 +15,7 @@ body {
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
   background-color: #f1f1f1;
+  list-style: none;
 }
 
 
@@ -45,9 +46,17 @@ body {
 
 #menulist-header{
   width: 100%;
-  background-image: url('../images/donut2.jpg');
+  background-image: url('../images/salad.png');
   background-attachment: fixed;
   padding : 8rem 0 8rem 0;
+}
+
+.item{
+  list-style: none;
+}
+
+.item a{
+  color: #101010;
 }
 
 .feedback-head-text{
