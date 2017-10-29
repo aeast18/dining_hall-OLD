@@ -63,3 +63,232 @@ body {
   padding : 10rem 0 10rem 0;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
+.cbo_nn_NutritionLabelDiv {
+	padding: 2px;
+}
+#nutritionGrid {
+	margin: 0px;
+}
+.cbo_nn_NutritionLabelTable {
+	background-color: #FFFFFF;
+	border: 2px solid black;
+	color: #000000;
+	font: 1em Arial, Helvetica, sans-serif;
+	margin: 1px !important;
+	moz-box-shadow: rgba(0, 0, 0, 0.3) 2px 3px 2px !important;
+	padding: 1px !important;
+	webkit-box-shadow: rgba(0, 0, 0, 0.3) 2px 3px 2px !important;
+	width: 250px !important;
+}
+.cbo_nn_NutritionLabelTable td {
+	margin: 1px !important;
+	padding: 1px !important;
+}
+.cbo_nn_LabelHeader {
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0px;
+	width: 100%;
+}
+.cbo_nn_LabelSubHeader {
+	color: #000000;
+	font-family: "Arial";
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0px;
+	width: 100%;
+}
+.cbo_nn_LabelBorderedSubHeader {
+	border-bottom: 1px #000000 solid;
+}
+.cbo_nn_LabelLabel {
+	color: #000000;
+	font-family: "Arial";
+	font-weight: bold;
+	padding: 0px;
+}
+.cbo_nn_LabelBottomBorderLabel {
+	border-bottom: 9px #000000 solid;
+	color: #000000;
+	font-family: "Arial";
+	font-weight: bold;
+	padding: 0px;
+}
+.cbo_nn_LabelDetail {
+	color: #000000;
+	font-family: "Arial";
+	padding: 0px;
+}
+.cbo_nn_LabelLeftPaddedDetail {
+	color: #000000;
+	font-family: "Arial";
+	padding-left: 8px;
+}
+.cbo_nn_LabelPrimaryDetail {
+	color: #000000;
+	font-family: "Arial";
+	padding-left: 8px;
+	text-align: right;
+	width: 30%;
+}
+.cbo_nn_LabelPrimaryDetailPercent {
+	color: #000000;
+	font-family: "Arial";
+	padding-left: 8px;
+	text-align: right;
+	width: 30%;
+}
+.cbo_nn_LabelDetailPadded {
+	color: #000000;
+	font-family: "Arial";
+	padding-left: 10px;
+}
+.cbo_nn_LabelSecondaryTable {
+	border-bottom: 1px #cccccc solid;
+	border-top: 1px #cccccc solid;
+}
+.cbo_nn_SecondaryNutrient {
+	color: #000000;
+	font-family: "Arial";
+	padding: 0px;
+	width: 48%;
+}
+.cbo_nn_SecondaryNutrientSpacer {
+	text-align: center;
+	vertical-align: middle;
+	width: 4%;
+}
+.cbo_nn_NutritionGridContainerDiv {
+	left: 20px;
+	position: absolute;
+	top: 20px;
+	z-index: 20000;
+}
+.cbo_nn_NutritionGridInternalDiv {
+	background-color: #FFFFFF;
+	border: 2px solid black;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: small;
+	position: relative;
+}
+.cbo_nn_NutritionGridInternalDiv {
+	margin: 5px;
+}
+.cbo_nn_NutritionGrid {
+	margin: 0px;
+}
+.cbo_nn_NutritionGridHeaderData {
+	border: 1px solid #333;
+	color: #fff;
+	background-color: #696969;
+}
+.cbo_nn_NutritionGridHeaderPercent {
+	border: 1px solid #333;
+	color: #fff;
+	background-color: #696969;
+}
+.cbo_nn_NutritionGridItemName {
+	background-color: #eee;
+	border: 1px solid #c0c0c0;
+	width: 250px;
+	word-wrap: break-word;
+}
+.cbo_nn_NutritionGridData {
+	border: 1px solid #c0c0c0;
+}
+.cbo_nn_NutritionGridPercent {
+	border: 1px solid #c0c0c0;
+}
+.cbo_nn_NutritionGridSummary {
+	background-color: #f7f2ee;
+	border: 1px solid #c0c0c0;
+	text-align: left;
+}
+.cbo_nn_NutritionGridScheduleHeader {
+	background-color: #ccddff;
+	border: 1px solid #c0c0c0;
+	text-align: left;
+}
+.cbo_nn_NutritionGridScheduleSummary {
+	background-color: #f7f2ee;
+	border: 1px solid #c0c0c0;
+	text-align: left;
+}
+.cbo_nn_sideUnitPanelDiv {
+    margin-bottom: 10px;
+}
+.cbo_nn_sideUnitInnerDiv {
+    padding: 0px 10px 10px 10px;
+    background-color: #E4F1FF;
+}
+.cbo_nn_sideUnitTable {
+}
+.cbo_nn_sideUnitCell {
+	padding-left: 15px;
+}
+.cbo_nn_sideUnitPrimaryRow {
+}
+.cbo_nn_sideUnitAlternateRow {
+}
+.cbo_nn_sideUnitHeader {
+    font-size: normal;
+    font-weight:bold;
+    color:#1a6eca;
+    text-align:left;
+    padding: 10px 10px 0px 10px;
+    background-color: #E4F1FF;
+}
+.cbo_nn_PanelErrorDiv {
+	padding: 10px;
+}
+.cbo_nn_mobileItemName {
+}
+.cbo_nn_mobileShowNutrition {
+}
+.cbo_nn_closeButton {
+	float: right;
+	height: 32px;
+	width: 60px;
+	margin: 0px;
+	padding: 1px;
+	border: none;
+	background: none !important;
+}.cbo_nn_unitTreeParent{}
+.cbo_nn_unitTreeParentNoChild{}
+.cbo_nn_LabelLeftPaddedDetailIncomplete
+{
+  color: #990000;
+}
+.cbo_nn_LabelPrimaryDetailIncomplete
+{
+  color: #990000;
+}
+.cbo_nn_LabelPrimaryDetailPercentIncomplete
+{
+  color: #990000;
+}
+.cbo_nn_SecondaryNutrientIncomplete
+{
+  color: #990000;
+}
+.cbo_nn_NutritionGridDataIncomplete
+{
+  border: 1px solid #c0c0c0;
+  color: #990000;
+}
+.cbo_nn_NutritionGridPercentIncomplete
+{
+  border: 1px solid #c0c0c0;
+  color: #990000;
+}
+.cbo_nn_LabelDetailIncomplete
+{
+  color: #990000;
+}
+.cbo_nn_SecondaryNutrientLabel
+{
+}
