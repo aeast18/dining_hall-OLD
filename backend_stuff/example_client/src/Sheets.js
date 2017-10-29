@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-const api_url = 'http://localhost:8080/';
+const api_url = 'http://45.32.165.208/';
 
 function sheets(callback){
   fetch(api_url)

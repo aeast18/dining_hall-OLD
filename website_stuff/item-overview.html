@@ -1,7 +1,6 @@
-<!-- Ideally this will be a template for displaying all necessary information about a certain item. -->
 <!DOCTYPE html>
+<!-- Ideally this will be a template for displaying all necessary information about a certain item. -->
 <html lang="en">
-
   <head>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -18,31 +17,48 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Don't tell me WHAT TO DO ADRIAN YOU GlutTON</title>
+    <title>NMH Dining</title>
 
     <script>
-      var menu = TAFFY();
-      //retrieve the json object from the middle-man server
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      //retrieve the json object from the middle-man server 45.32.165.208
       $.getJSON( "http://45.32.165.208/", function( data ) {
         //inserts a trimmed version of the JSON received from the server
         const header = data[0];
-
-        var newdata = data.slice(1).map( (element) => {
-          let meal = {};
-          for(let i = 0; i < element.length; i++){
-            meal[header[i]] = element[i];
+        //find keyname col
+        let idcol = -1;
+        for(let i = 0; i < header.length; i++){
+          if(header[i]=="KeyName"){
+            idcol = i;
+            break;
           }
-          return meal;
-        });
+        }
 
-        menu.insert(JSON.parse(JSON.stringify(newdata).replace(/"\s+|\s+"/g,'"')));
-
-        menu().each(function(record) {
-          record.dayOfWeek = getDayOfWeek(record.LabelDate);
-        });
-
-        console.log(getDayOfWeek(d));
-        fillMenu(getDayOfWeek(d));
+        if(idcol==-1){
+          console.log("Invalid data");
+        }else{
+          const id = getParameterByName("id");
+          for(let i = 1; i < data.length; i++){
+            if(data[i][idcol]==id){
+              let meal = {};
+              const element = data[i];
+              for(let j = 0; j < element.length; j++){
+                meal[header[j]] = element[j];
+              }
+              fillMeal(meal);
+              break;
+            }
+          }
+        }
       });
     </script>
 
@@ -73,31 +89,24 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Feedback.html">Feedback</a>
-            </li>
-            <!-- This is TEMPORARY !!! -->
-
-          <li class="item-overview-TEST">
-            <a class="item-overview-TEST-link" href="item-overview.html">Item Overview Hahaa</a>
-          </1i>
-
-          <!-- End of temporary Miru Shenanigans -->
+            </li>s
           </ul>
         </div>
       </div>
     </nav>
 
     <!-- Page Content -->
-   <h1 class="below-nav display-1">Test Item Name</h1>
+   <h1 class="below-nav display-1"><span id="menu-FormalName"></span></h1>
 
    <div class="container">
   <div class="row">
-    <div class="col-sm-4">
-      <h3>Nut. info</h3>
-      <p>info goes here</p>
+    <div class="col-sm-6">
+      <h3>Ingredient</h3>
+      <p><span id="menu-IngredList"></span></p>
     </div>
-    <div class="col-sm-4">
-      <h3>Feedback or allergens or something</h3>
-      <p>info goes here</p>
+    <div class="col-sm-6">
+      <h3>Allergen List</h3>
+      <p><span id="menu-AllergenList"></span></p>
     </div>
   </div>
 </div>
@@ -108,45 +117,19 @@
       </div>
     </footer>
 <script>
-let selectedDay;
-let d = new Date();
-let today = "day" + d.getDay();
-
-//activate button for today's day
-$("label[id^='day']").addClass(function(i, dayButton) {
-  if(this.id === today)
-  return("active");
-});
-
-$('input[type=radio][name=days]').focus(function(elem) {
-  selectedDay = $(this).parent().text().trim();
-  fillMenu(selectedDay);
-});
-
-
 
 function toSentenceCase(str) {
   return str.substr(0,1).toUpperCase()+str.substr(1).toLowerCase();
 }
 
-function getDayOfWeek(date) {
-  let dayOfWeek = new Date(date).getDay();
-  return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
-}
-
-function fillMenu(day) {
-  var meals = menu({dayOfWeek : day}).distinct("Meal");
-
-  $('.meal').empty();
-
-  $.each(meals, function(e, meal) {
-    $('.meal').append(
-      "<h2>" + toSentenceCase(meal) + "</h2><ul class='" + meal + "'></ul>"
-    );
-    $.each(menu({Meal: {isnocase: meal},dayOfWeek: day}).get(), function(i, item) {
-      $('.'+meal).append('<li>' + item.FormalName.toLowerCase() + '</li>')
-    });
-  });
+function fillMeal(meal) {
+  console.log(meal);
+  for(x in meal){
+    let element = document.getElementById("menu-" + x);
+    if(element){
+      element.innerHTML = meal[x];
+    }
+  }
 }
 </script>
   </body>

@@ -5,7 +5,7 @@ html {
 }
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 .footer {
   position: absolute;
@@ -24,12 +24,32 @@ body {
   font-size: 500%;
 }
 
-.about {
-  margin-left: 500px;
-  margin-right: 500px;
-  margin-top: 40px;
+#about-text{
+  margin: 0 auto;
 }
 
-.container {
+#feedback-form{
+  display: block;
+  margin: auto;
+}
+
+.container{
   text-align: center;
+}
+
+.feedback-head{
+  width: 100%;
+  background-image: url('../images/NMH_Dining_Hall.jpg');
+  background-attachment: fixed;
+}
+
+#menulist-header{
+  width: 100%;
+  background-image: url('../images/donut2.jpg');
+  background-attachment: fixed;
+  padding : 8rem 0 8rem 0;
+}
+
+.feedback-head-text{
+  padding : 10rem 0 10rem 0;
 }
