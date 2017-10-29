@@ -156,7 +156,7 @@ function fillMenu(day) {
       "<h2>" + toSentenceCase(meal) + "</h2><ul class='" + meal + "'></ul>"
     );
     $.each(menu({Meal: {isnocase: meal},dayOfWeek: day}).get(), function(i, item) {
-      $('.'+meal).append('<li> <a href=\"item-overview.html?id=' + item.KeyName + '\">' + item.FormalName.toLowerCase() + '</a></li>');
+      $('.'+meal).append('<li class="item"> <a href=\"item-overview.html?id=' + item.KeyName + '\">' + item.FormalName.toLowerCase() + '</a></li>');
     });
   });
 }
