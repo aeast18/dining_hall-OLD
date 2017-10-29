@@ -55,6 +55,10 @@ body {
   list-style: none;
 }
 
+.item a{
+  color: #101010;
+}
+
 .feedback-head-text{
   padding : 10rem 0 10rem 0;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
