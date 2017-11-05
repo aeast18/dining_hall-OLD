@@ -18,6 +18,9 @@ body {
   list-style: none;
 }
 
+nav{
+  background-color: #3f0707;
+}
 
 .below-nav {
   margin-top: 5rem;
