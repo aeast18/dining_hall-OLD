@@ -147,17 +147,23 @@ function getDayOfWeek(date) {
 }
 
 function fillMenu(day) {
+  //const realMeal = ['Breakfast','Lunch','Dinner','Brunch'];
   var meals = menu({dayOfWeek : day}).distinct("Meal");
 
   $('.meal').empty();
 
   $.each(meals, function(e, meal) {
+    //meals filtering
+    //if(realMeal.includes(toSentenceCase(meal))){
     $('.meal').append(
       "<div class='col text-center'><h2>" + toSentenceCase(meal) + "</h2><ul class='" + meal + "'></ul></div>"
     );
-    $.each(menu({Meal: {isnocase: meal},dayOfWeek: day}).get(), function(i, item) {
-      $('.'+meal).append('<li class="item"> <a href=\"item-overview.html?id=' + item.KeyName + '\">' + item.FormalName.toLowerCase() + '</a></li>');
+    $.each(menu({Meal: {isnocase: meal},dayOfWeek: day}).order('ServiceCourse').get(), function(i, item) {
+      if(item.ServiceCourse!='13 - PARSTOCKS'){
+        $('.'+meal).append('<li class="item"> <a href=\"item-overview.html?id=' + item.KeyName + '\">' + item.FormalName.toLowerCase() + '</a></li>');
+      }
     });
+    //}
   });
 }
 </script>
