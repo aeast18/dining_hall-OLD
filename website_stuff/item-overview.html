@@ -103,6 +103,7 @@
     <div class="col-sm-6">
       <h3>Ingredient</h3>
       <p><span ckass="menu-IngredList"></span></p>
+      <!-- Nutrition Information -->
       <div id="nutritionLabel" class="cbo_nn_NutritionLabelDiv">
         <table class="cbo_nn_NutritionLabelTable" cellpadding="0" cellspacing="0" style="width:100%;">
         <tbody>
@@ -121,7 +122,7 @@
             <td class="cbo_nn_LargeLabelHeader">Nutrition Information</td>
           </tr>
           <tr>
-            <td class="cbo_nn_LabelBottomBorderLabel">Serving Size:&nbsp;4 OZ PORTION&nbsp;(114g)</td>
+            <td class="cbo_nn_LabelBottomBorderLabel">Serving Size:&nbsp;<span class="menu-ServingUofmDesc"></span>&nbsp;(<span class="menu-ServingGramWgt"></span>g)</td>
           </tr>
           <tr>
             <td class="cbo_nn_LabelAmountServed">Amount Per Serving</td>
@@ -132,8 +133,8 @@
                 <tbody>
                   <tr>
                     <td class="cbo_nn_LabelDetail">
-                      <font style="font-weight: bold;">Calories:</font>&nbsp;&nbsp;<span class="cbo_nn_LabelDetailIncomplete">38</span></td>
-                    <td class="cbo_nn_SecondaryNutrient">Calories from Fat:&nbsp;&nbsp;<span class="cbo_nn_LabelDetailIncomplete">0</span></td>
+                      <font style="font-weight: bold;">Calories:</font>&nbsp;&nbsp;<span class="cbo_nn_LabelDetailIncomplete menu-KCAL_Value"></span></td>
+                    <td class="cbo_nn_SecondaryNutrient">Calories from Fat:&nbsp;&nbsp;<span class="cbo_nn_LabelDetailIncomplete menu-CaloriesFromFat_Value"></span></td>
                   </tr>
                 </tbody>
               </table>
@@ -159,13 +160,13 @@
                                       <font style="font-weight:bold;">Total Fat:</font>
                                     </td>
                                     <td>
-                                      <font class="cbo_nn_LabelPrimaryDetailIncomplete">&nbsp;0&nbsp;Gram</font>
+                                      <font class="cbo_nn_LabelPrimaryDetailIncomplete">&nbsp;<span class="menu-TotalFat_Gram"></span>&nbsp;Gram</font>
                                     </td>
                                   </tr>
                                 </tbody>
                               </table>
                             </td>
-                            <td style="width:30%;" align="right" class="cbo_nn_LabelLeftPaddedDetailIncomplete">0%</td>
+                            <td style="width:30%;" align="right" class="cbo_nn_LabelLeftPaddedDetailIncomplete"><span class="menu-TotalFat_Percent"></span>%</td>
                           </tr>
                         </tbody>
                       </table>
@@ -193,13 +194,13 @@
                                       <font style="font-weight:normal;">Saturated Fat:</font>
                                     </td>
                                     <td>
-                                      <font class="cbo_nn_LabelPrimaryDetailIncomplete">&nbsp;0&nbsp;Gram</font>
+                                      <font class="cbo_nn_LabelPrimaryDetailIncomplete">&nbsp;<span class="menu-FattyAcidTotalSat_Gram"></span>&nbsp;Gram</font>
                                     </td>
                                   </tr>
                                 </tbody>
                               </table>
                             </td>
-                            <td style="width:30%;" align="right" class="cbo_nn_LabelLeftPaddedDetailIncomplete">0%</td>
+                            <td style="width:30%;" align="right" class="cbo_nn_LabelLeftPaddedDetailIncomplete"><span class="menu-FattyAcidTotalSat_Percent"></span>%</td>
                           </tr>
                         </tbody>
                       </table>
@@ -227,13 +228,13 @@
                                       <font style="font-weight:normal;">Trans Fat:</font>
                                     </td>
                                     <td>
-                                      <font class="cbo_nn_LabelPrimaryDetailIncomplete">&nbsp;0&nbsp;Gram</font>
+                                      <font class="cbo_nn_LabelPrimaryDetailIncomplete">&nbsp;<span class="menu-FattyAcidTotalPoly_Gram"></span>&nbsp;Gram</font>
                                     </td>
                                   </tr>
                                 </tbody>
                               </table>
                             </td>
-                            <td style="width:30%;" align="right" class="cbo_nn_LabelLeftPaddedDetailIncomplete">0%</td>
+                            <td style="width:30%;" align="right" class="cbo_nn_LabelLeftPaddedDetailIncomplete"><span class="menu-FattyAcidTotalPoly_Percent"></span>%</td>
                           </tr>
                         </tbody>
                       </table>
@@ -260,13 +261,13 @@
                                       <font style="font-weight:bold;">Cholesterol:</font>
                                     </td>
                                     <td>
-                                      <font class="cbo_nn_LabelPrimaryDetailIncomplete">&nbsp;0&nbsp;MG</font>
+                                      <font class="cbo_nn_LabelPrimaryDetailIncomplete">&nbsp;<span class="menu-Cholesterol_Milligram"></span>&nbsp;MG</font>
                                     </td>
                                   </tr>
                                 </tbody>
                               </table>
                             </td>
-                            <td style="width:30%;" align="right" class="cbo_nn_LabelLeftPaddedDetailIncomplete">0%</td>
+                            <td style="width:30%;" align="right" class="cbo_nn_LabelLeftPaddedDetailIncomplete"><span class="menu-Cholesterol_Percent"></span>%</td>
                           </tr>
                         </tbody>
                       </table>
@@ -519,6 +520,7 @@
         </tbody>
         </table>
       </div>
+      <!-- -->
     </div>
     <div class="col-sm-6">
       <h3>Allergen List</h3>
