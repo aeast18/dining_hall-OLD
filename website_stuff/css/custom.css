@@ -46,10 +46,17 @@ ul{
   text-align: center;
 }
 
-.feedback-head{
+.feedback-pgback{
   width: 100%;
   background-image: url('../images/NMH_Dining_Hall.jpg');
   background-attachment: fixed;
+}
+
+#feedback-header{
+  width: 100%;
+  background-image: url('../images/DiningHallFallPic.jpg');
+  background-attachment: fixed;
+  padding : 16rem 0 8rem 0;
 }
 
 #menulist-header{
