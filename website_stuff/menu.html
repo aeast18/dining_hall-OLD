@@ -153,7 +153,7 @@ function fillMenu(day) {
 
   $.each(meals, function(e, meal) {
     $('.meal').append(
-      "<div class='col'><h2>" + toSentenceCase(meal) + "</h2><ul class='" + meal + "'></ul></div>"
+      "<div class='col text-center'><h2>" + toSentenceCase(meal) + "</h2><ul class='" + meal + "'></ul></div>"
     );
     $.each(menu({Meal: {isnocase: meal},dayOfWeek: day}).get(), function(i, item) {
       $('.'+meal).append('<li class="item"> <a href=\"item-overview.html?id=' + item.KeyName + '\">' + item.FormalName.toLowerCase() + '</a></li>');
